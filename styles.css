@@ -245,10 +245,11 @@ header {
     background-color: #fff;
   }
   
+  /* Hero Section */
+  /* Hero Section - Updated for better mobile compatibility */
 
 
 /* Create the main background layer - no longer using 'fixed' for mobile compatibility */
-/* Hero Section - Updated for better mobile compatibility */
 .hero {
     position: relative;
     height: 100vh;
@@ -263,7 +264,18 @@ header {
     padding-right: 20px;
     overflow: hidden; /* Ensures the background stays within bounds */
     z-index: 1;
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../images/damgaard-duo.jpg') center/cover no-repeat;
+}
+
+/* Create the main background layer - no longer using 'fixed' for mobile compatibility */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/damgaard-duo.jpg') center/cover no-repeat;
+    z-index: -2; /* Place behind content */
 }
 
 /* Add the gradient overlay */
