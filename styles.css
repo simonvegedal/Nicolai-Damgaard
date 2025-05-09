@@ -255,9 +255,37 @@ header {
     text-align: center;
     padding-top: 70px;
     position: relative;
-  }
-  
-  .hero::before {
+    /* Add backdrop-filter for modern browsers */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px); /* For Safari */
+}
+.hero {
+    position: relative;
+    height: 100vh;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding-top: 70px;
+    overflow: hidden; /* Ensures the blurred background stays within bounds */
+}
+
+/* Create a blurred background layer */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/damgaard-duo.jpg') center/cover no-repeat fixed;
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    z-index: -2; /* Place behind content */
+}
+
+/* Add the gradient overlay */
+.hero::after {
     content: '';
     position: absolute;
     top: 0;
@@ -265,19 +293,8 @@ header {
     width: 100%;
     height: 100%;
     background: radial-gradient(circle, rgba(52, 152, 219, 0.2) 0%, rgba(44, 62, 80, 0.4) 100%);
-  }
-  
-  .hero-content {
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 30px;
-    border-radius: var(--border-radius-lg);
-    backdrop-filter: blur(5px);
-    background-color: rgba(0, 0, 0, 0.3);
-    box-shadow: var(--box-shadow-xl);
-    animation: fadeIn 1.5s ease;
-  }
+    z-index: -1; /* Place behind content but above blurred background */
+}
   
   @keyframes fadeIn {
     from {
